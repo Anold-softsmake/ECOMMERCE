@@ -70,7 +70,6 @@ npm start
 3. Open the site.
 
 ```text
-http://localhost:3000
 ```
 
 ## Usage
