@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce Business Website</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#shop" aria-label="CommercePro home">
+        <span class="brand-mark">C</span>
+        <span>CommercePro</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#shop">Shop</a>
+        <a href="#orders">Orders</a>
+        <a href="#profile">Profile</a>
+        <a href="#admin">Admin</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">◐</button>
+        <button class="cart-button" id="cartToggle" aria-label="Open shopping cart">
+          Cart
+          <span id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="shop-shell" id="shop">
+        <aside class="filters" aria-label="Product filters">
+          <div>
+            <p class="eyebrow">Catalog</p>
+            <h1>Curated essentials for modern work and home.</h1>
+          </div>
+
+          <label class="search-label" for="searchInput">Search products</label>
+          <input id="searchInput" type="search" placeholder="Search by name, category, or detail" />
+
+          <div class="filter-block">
+            <span>Category</span>
+            <div class="segmented" id="categoryFilters"></div>
+          </div>
+
+          <div class="filter-block">
+            <span>Price range</span>
+            <input id="priceRange" type="range" min="50" max="900" value="900" />
+            <div class="range-row">
+              <span>$50</span>
+              <strong id="priceValue">$900</strong>
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <span>Minimum rating</span>
+            <div class="segmented compact" id="ratingFilters"></div>
+          </div>
+        </aside>
+
+        <section class="catalog-area" aria-label="Product catalog">
+          <div class="catalog-toolbar">
+            <div>
+              <p class="eyebrow">Live store</p>
+              <h2 id="resultCount">0 products</h2>
+            </div>
+            <select id="sortSelect" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="rating">Top rated</option>
+            </select>
+          </div>
+
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+      </section>
+
+      <section class="band" id="orders">
+        <div class="section-heading">
+          <p class="eyebrow">Order tracking</p>
+          <h2>Track purchases from confirmation to delivery.</h2>
+        </div>
+        <div class="order-panel">
+          <form id="trackForm" class="track-form">
+            <label for="orderInput">Order number</label>
+            <div>
+              <input id="orderInput" type="text" placeholder="CP-1048" />
+              <button type="submit">Track</button>
+            </div>
+          </form>
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </section>
+
+      <section class="band split" id="profile">
+        <div class="profile-card">
+          <p class="eyebrow">Customer profile</p>
+          <h2>Sign in to save carts, addresses, and reviews.</h2>
+          <form id="loginForm" class="stack-form">
+            <label>
+              Email
+              <input type="email" id="emailInput" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="passwordInput" placeholder="Minimum 6 characters" minlength="6" required />
+            </label>
+            <button type="submit">Create account / Login</button>
+          </form>
+        </div>
+        <div class="profile-summary" id="profileSummary"></div>
+      </section>
+
+      <section class="admin-section" id="admin">
+        <div class="section-heading">
+          <p class="eyebrow">Administrator</p>
+          <h2>Manage products, inventory, orders, and sales health.</h2>
+        </div>
+        <div class="admin-grid">
+          <div class="admin-card">
+            <span>Total sales</span>
+            <strong id="salesTotal">$0</strong>
+          </div>
+          <div class="admin-card">
+            <span>Open orders</span>
+            <strong id="openOrders">0</strong>
+          </div>
+          <div class="admin-card">
+            <span>Low stock</span>
+            <strong id="lowStock">0</strong>
+          </div>
+          <div class="admin-card">
+            <span>Customers</span>
+            <strong id="customerCount">0</strong>
+          </div>
+        </div>
+        <div class="admin-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Inventory</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTable"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+      <div class="cart-header">
+        <div>
+          <p class="eyebrow">Shopping cart</p>
+          <h2>Your bag</h2>
+        </div>
+        <button class="icon-button" id="closeCart" aria-label="Close shopping cart">×</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="total-row">
+          <span>Total</span>
+          <strong id="cartTotal">$0</strong>
+        </div>
+        <button id="checkoutButton">Secure checkout</button>
+      </div>
+    </aside>
+
+    <div class="modal" id="checkoutModal" aria-hidden="true" role="dialog" aria-labelledby="checkoutTitle">
+      <form class="checkout" id="checkoutForm">
+        <div class="cart-header">
+          <div>
+            <p class="eyebrow">Secure checkout</p>
+            <h2 id="checkoutTitle">Complete your purchase</h2>
+          </div>
+          <button class="icon-button" type="button" id="closeCheckout" aria-label="Close checkout">×</button>
+        </div>
+        <div class="checkout-grid">
+          <label>
+            Full name
+            <input type="text" required placeholder="Alex Carter" />
+          </label>
+          <label>
+            Email
+            <input type="email" required placeholder="alex@example.com" />
+          </label>
+          <label class="wide">
+            Shipping address
+            <input type="text" required placeholder="123 Market Street" />
+          </label>
+          <label>
+            Card number
+            <input type="text" required maxlength="19" placeholder="4242 4242 4242 4242" />
+          </label>
+          <label>
+            ZIP code
+            <input type="text" required placeholder="10001" />
+          </label>
+        </div>
+        <button type="submit">Place order</button>
+      </form>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

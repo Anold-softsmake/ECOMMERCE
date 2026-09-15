@@ -1,0 +1,21 @@
+{
+  "name": "ecommerce-business-website",
+  "version": "1.0.0",
+  "description": "Modern e-commerce storefront with customer shopping flows and an admin dashboard.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "keywords": [
+    "ecommerce",
+    "storefront",
+    "node",
+    "javascript"
+  ],
+  "author": "Project Developer",
+  "license": "MIT"
+}
